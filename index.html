@@ -5,35 +5,1103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Billing Rental MANTUL PS</title>
+<meta name="theme-color" content="#0b1020">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rental PS">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+--bg:#0b1020;
+--bg2:#11182d;
+--panel:rgba(17,24,45,.78);
+--panel-solid:#121a30;
+--card:rgba(255,255,255,.06);
+--text:#eef2ff;
+--muted:#aab4d6;
+--line:rgba(255,255,255,.10);
+--accent:#7c9cff;
+--accent-2:#9b7cff;
+--success:#1fc98a;
+--warning:#ffb84d;
+--danger:#ff6b81;
+--shadow:0 18px 50px rgba(0,0,0,.35);
+--radius:24px;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+margin:0;
+padding:0;
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:
+radial-gradient(circle at top left, rgba(124,156,255,.18), transparent 28%),
+radial-gradient(circle at top right, rgba(155,124,255,.14), transparent 30%),
+linear-gradient(160deg,var(--bg),#0d1325 45%, #0a0f1d 100%);
+color:var(--text);
+min-height:100%;
+}
 
 body{
-margin:0;
-font-family:Poppins;
-background:#0f172a;
-color:white;
+padding:32px 18px 42px;
 }
 
-header{
-background:#445eef;
-padding:15px;
-font-size:22px;
-font-weight:600;
-text-align:center;
+.container{
+max-width:1280px;
+margin:auto;
 }
 
-.dashboard{
+h1{
+margin:0 0 8px;
+font-size:clamp(28px,4vw,44px);
+font-weight:800;
+letter-spacing:.3px;
+}
+
+.subtitle{
+color:var(--muted);
+margin:0 0 28px;
+font-size:15px;
+}
+
+.topbar{
 display:flex;
-gap:15px;
-padding:15px;
+justify-content:space-between;
+align-items:flex-end;
+gap:18px;
+margin-bottom:28px;
 flex-wrap:wrap;
 }
 
-.card{
-background:#1e293b;
+.brand{
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+.brand-badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+width:max-content;
+padding:8px 14px;
+border:1px solid var(--line);
+border-radius:999px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+color:#d9e2ff;
+font-size:13px;
+}
+
+.brand-badge::before{
+content:"";
+width:8px;
+height:8px;
+border-radius:50%;
+background:linear-gradient(135deg,var(--accent),var(--accent-2));
+box-shadow:0 0 18px rgba(124,156,255,.75);
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(3,minmax(160px,1fr));
+gap:14px;
+width:min(100%,520px);
+}
+
+.summary-card{
+background:var(--panel);
+backdrop-filter:blur(18px);
+border:1px solid var(--line);
+border-radius:20px;
+padding:16px 18px;
+box-shadow:var(--shadow);
+}
+
+.summary-label{
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.12em;
+color:var(--muted);
+margin-bottom:8px;
+}
+
+.summary-value{
+font-size:24px;
+font-weight:800;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.pscard{
+position:relative;
+overflow:hidden;
+background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+backdrop-filter:blur(18px);
+border:1px solid var(--line);
+border-radius:var(--radius);
+padding:22px;
+box-shadow:var(--shadow);
+transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.pscard:hover{
+transform:translateY(-4px);
+box-shadow:0 22px 60px rgba(0,0,0,.42);
+}
+
+.pscard::after{
+content:"";
+position:absolute;
+inset:auto -40px -40px auto;
+width:140px;
+height:140px;
+background:radial-gradient(circle, rgba(124,156,255,.18), transparent 65%);
+pointer-events:none;
+}
+
+.psname{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-bottom:16px;
+font-size:22px;
+font-weight:800;
+}
+
+.badge{
+padding:7px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:700;
+letter-spacing:.04em;
+border:1px solid transparent;
+}
+
+.badgeIdle{background:rgba(255,255,255,.06);color:#dce4ff;border-color:var(--line)}
+.badgePlay{background:rgba(31,201,138,.15);color:#8bf1c4;border-color:rgba(31,201,138,.25)}
+.badgeWarn{background:rgba(255,184,77,.16);color:#ffd089;border-color:rgba(255,184,77,.28)}
+.badgeOver{background:rgba(255,107,129,.16);color:#ff98a8;border-color:rgba(255,107,129,.28)}
+
+.meta{
+display:flex;
+justify-content:space-between;
+gap:12px;
+color:var(--muted);
+font-size:14px;
+margin-bottom:14px;
+}
+
+.timer{
+font-size:44px;
+font-weight:900;
+letter-spacing:1.4px;
+text-align:center;
+padding:18px 14px;
+border-radius:20px;
+background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+border:1px solid rgba(255,255,255,.09);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+margin:14px 0 16px;
+}
+
+.timerWarning{
+color:#ffd089;
+text-shadow:0 0 18px rgba(255,184,77,.2);
+}
+
+.harga{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 16px;
+margin:0 0 18px;
+border-radius:18px;
+background:rgba(255,255,255,.05);
+border:1px solid var(--line);
+font-size:15px;
+color:var(--muted);
+}
+
+.harga b{
+font-size:24px;
+color:var(--text);
+}
+
+.controls{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:10px;
+}
+
+button{
+appearance:none;
+border:none;
+outline:none;
+padding:13px 14px;
+border-radius:16px;
+font-weight:700;
+font-size:14px;
+cursor:pointer;
+transition:transform .18s ease, opacity .18s ease, box-shadow .18s ease, filter .18s ease;
+box-shadow:0 10px 22px rgba(0,0,0,.22);
+}
+
+button:hover{transform:translateY(-2px);filter:brightness(1.04)}
+button:active{transform:translateY(0)}
+button:disabled{
+opacity:.45;
+cursor:not-allowed;
+transform:none;
+filter:none;
+}
+
+button.start{background:linear-gradient(135deg,#28d99c,#1fc98a);color:#082417}
+button.pause{background:linear-gradient(135deg,#ffc46b,#ffb84d);color:#30200a}
+button.reset{background:linear-gradient(135deg,#ff8ea0,#ff6b81);color:#2f0912}
+button.add{background:linear-gradient(135deg,#89a7ff,#7c9cff);color:#0c1634}
+
+.pscardMain{border-color:rgba(124,156,255,.28)}
+.pscardJalan{border-color:rgba(31,201,138,.24)}
+.pscardWarning{border-color:rgba(255,184,77,.28)}
+.pscardHabis{border-color:rgba(255,107,129,.3)}
+
+.footer-note{
+margin-top:26px;
+padding:16px 18px;
+border:1px solid var(--line);
+border-radius:20px;
+background:rgba(255,255,255,.04);
+color:var(--muted);
+font-size:14px;
+text-align:center;
+}
+
+@media(max-width:860px){
+.summary{grid-template-columns:1fr}
+.topbar{align-items:flex-start}
+}
+
+@media(max-width:560px){
+body{padding:20px 12px 30px}
+.pscard{padding:18px}
+.timer{font-size:36px}
+.controls{grid-template-columns:1fr}
+}
+
+
+.menuSection{
+margin-top:18px;
+padding:16px;
+border-radius:18px;
+background:rgba(255,255,255,.045);
+border:1px solid var(--line);
+}
+
+.menuTitle{
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:.12em;
+color:var(--muted);
+margin:0 0 12px;
+font-weight:700;
+}
+
+.menuList{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.menuRow{
+display:grid;
+grid-template-columns:minmax(0,1.5fr) 120px 110px;
+gap:10px;
+align-items:center;
+padding:10px 12px;
+border-radius:14px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.menuName{
+font-size:14px;
+font-weight:600;
+color:var(--text);
+}
+
+.menuPrice{
+font-size:13px;
+color:var(--muted);
+text-align:right;
+}
+
+.menuQty{
+display:flex;
+align-items:center;
+justify-content:flex-end;
+gap:8px;
+font-weight:700;
+}
+
+.menuQty button{
+padding:7px 10px;
+min-width:36px;
+border-radius:12px;
+background:linear-gradient(135deg,#89a7ff,#7c9cff);
+color:#0c1634;
+box-shadow:none;
+}
+
+.billBreakdown{
+margin-top:12px;
+padding:12px 14px;
+border-radius:14px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.billLine{
+display:flex;
+justify-content:space-between;
+gap:12px;
+font-size:14px;
+color:var(--muted);
+}
+
+.billLine strong{
+color:var(--text);
+font-size:18px;
+}
+
+@media(max-width:760px){
+.menuRow{
+grid-template-columns:1fr;
+}
+.menuPrice,.menuQty{
+text-align:left;
+justify-content:flex-start;
+}
+}
+
+.menuToolbar{
+display:grid;
+grid-template-columns:1fr 130px 120px;
+gap:10px;
+margin-bottom:12px;
+}
+
+.menuToolbar select,.menuToolbar input{
+width:100%;
+padding:12px 14px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.10);
+background:rgba(255,255,255,.06);
+color:var(--text);
+outline:none;
+}
+
+.menuToolbar input::placeholder{color:var(--muted)}
+
+.menuToolbar button{
+box-shadow:none;
+}
+
+.menuGroup{
+margin-top:14px;
+padding-top:12px;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.menuGroup:first-of-type{
+margin-top:0;
+padding-top:0;
+border-top:none;
+}
+
+.menuGroupTitle{
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.12em;
+color:var(--muted);
+margin:0 0 10px;
+font-weight:800;
+}
+
+.menuEmpty{
+padding:12px 14px;
+border-radius:14px;
+background:rgba(255,255,255,.04);
+border:1px dashed rgba(255,255,255,.10);
+color:var(--muted);
+font-size:14px;
+}
+
+@media(max-width:760px){
+.menuToolbar{
+grid-template-columns:1fr;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>BILLING RENTAL MANTUL PLAYSTATION</header>
+
+<div class="dashboard">
+
+<div class="card">
+Total Pendapatan
+<h2 id="totalPend">0</h2>
+<button onclick="resetPendapatan()">Reset Pendapatan</button>
+</div>
+
+</div>
+
+<div class="container" id="psContainer"></div>
+
+<div style="padding:15px">
+
+<h3>Riwayat Transaksi</h3>
+<button onclick="hapusRiwayat()">Hapus Riwayat</button>
+
+<table>
+<thead>
+<tr>
+<th>Tanggal</th>
+<th>PS</th>
+<th>Nama</th>
+<th>Total</th>
+</tr>
+</thead>
+
+<tbody id="history"></tbody>
+
+</table>
+
+</div>
+
+<audio id="alarm10">
+<source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg">
+</audio>
+
+<audio id="alarm0">
+<source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg">
+</audio>
+
+<script>
+let deferredPrompt = null
+
+async function registerServiceWorker(){
+if(!("serviceWorker" in navigator)) return
+try{
+await navigator.serviceWorker.register("./sw.js")
+}catch(e){}
+}
+
+function setupInstallPrompt(){
+const installBtn = document.getElementById("installBtn")
+window.addEventListener("beforeinstallprompt", (e)=>{
+e.preventDefault()
+deferredPrompt = e
+if(installBtn) installBtn.style.display = "inline-block"
+})
+
+if(installBtn){
+installBtn.addEventListener("click", async ()=>{
+if(!deferredPrompt) return
+deferredPrompt.prompt()
+try{ await deferredPrompt.userChoice }catch(e){}
+deferredPrompt = null
+installBtn.style.display = "none"
+})
+}
+
+window.addEventListener("appinstalled", ()=>{
+deferredPrompt = null
+if(installBtn) installBtn.style.display = "none"
+notifyUser("Aplikasi terpasang", "Rental PS berhasil di-install ke perangkat ini.")
+})
+}
+
+const psList=[
+{nama:"PS1",tipe:"PS3"},
+{nama:"PS2",tipe:"PS3"},
+{nama:"PS3",tipe:"PS3"},
+{nama:"PS4",tipe:"PS4"},
+{nama:"PS5",tipe:"PS4"}
+]
+
+const hargaPS3={1:5000,2:10000,3:13000,5:22000}
+const hargaPS4={1:8000,2:15000,3:22000,5:38000}
+
+function createDefaultPS(ps){
+return {
+nama:"",
+jam:1,
+detik:0,
+jalan:false,
+snack:{},
+peringatan:false,
+selesaiNotif:false,
+endTime:null,
+lastTick:null
+}
+}
+
+let dataPS=(JSON.parse(localStorage.getItem("dataPS"))||psList.map(createDefaultPS)).map((p,i)=>({
+...createDefaultPS(psList[i]),
+...p
+}))
+
+let transaksi=JSON.parse(localStorage.getItem("trans"))||[]
+let pendapatan=parseInt(localStorage.getItem("pend"))||0
+
+const menu=[
+{nama:"Pop Mie",harga:7000,kategori:"Makanan"},
+{nama:"Chuba",harga:1000,kategori:"Snack"},
+{nama:"Chitato Lite",harga:2000,kategori:"Snack"},
+{nama:"Good Time",harga:2000,kategori:"Snack"},
+{nama:"Oreo",harga:2000,kategori:"Snack"},
+{nama:"Beng Beng",harga:3000,kategori:"Snack"},
+{nama:"Kapal Api",harga:5000,kategori:"Minuman"},
+{nama:"Good Day",harga:5000,kategori:"Minuman"},
+{nama:"Tea Jus",harga:3000,kategori:"Minuman"},
+{nama:"Teh Tarik",harga:7000,kategori:"Minuman"},
+{nama:"Nutrisari",harga:5000,kategori:"Minuman"}
+]
+
+function format(w){
+let h=Math.floor(w/3600)
+let m=Math.floor((w%3600)/60)
+let s=w%60
+
+return String(h).padStart(2,"0")+":"+
+String(m).padStart(2,"0")+":"+
+String(s).padStart(2,"0")
+}
+
+function rupiah(n){
+return new Intl.NumberFormat("id-ID").format(Number(n||0))
+}
+
+function getStatusClass(p){
+if(!p.jalan && p.detik===0 && !p.endTime)return "pscardMain"
+if(p.jalan && p.detik>600)return "pscardJalan"
+if(p.detik>0 && p.detik<=600)return "pscardWarning"
+if(p.detik===0 && (!p.jalan || p.endTime))return "pscardHabis"
+return "pscardMain"
+}
+
+function hargaMain(i){
+let tipe=psList[i].tipe
+let jam=Number(dataPS[i].jam)
+if(tipe==="PS3") return hargaPS3[jam] || 0
+return hargaPS4[jam] || 0
+}
+
+function snackTotal(snack){
+let total=0
+for(let i in snack){
+let m=menu[i]
+total += (m?.harga || 0) * snack[i]
+}
+return total
+}
+
+function ensureNotificationPermission(){
+if(!("Notification" in window)) return
+if(Notification.permission==="default"){
+Notification.requestPermission().catch(()=>{})
+}
+}
+
+function notifyUser(title, body){
+if(!("Notification" in window)) return
+if(Notification.permission==="granted"){
+try{
+new Notification(title,{body, icon:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b1020'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-size='28' fill='%23ffffff'>PS</text></svg>"})
+}catch(e){}
+}
+}
+
+function recalcRunningTimers(showRestoreNotification=false){
+const now=Date.now()
+
+dataPS.forEach((p,i)=>{
+if(p.jalan && p.endTime){
+const sisa = Math.max(0, Math.ceil((p.endTime - now)/1000))
+const sebelumnya = Number(p.detik || 0)
+p.detik = sisa
+p.lastTick = now
+
+if(sisa<=600 && sisa>0 && !p.peringatan){
+p.peringatan = true
+document.getElementById("alarm10")?.play?.()
+notifyUser("Peringatan 10 menit", psList[i].nama + " tinggal " + format(sisa))
+}
+
+if(sisa===0){
+p.jalan = false
+p.endTime = null
+if(!p.selesaiNotif){
+p.selesaiNotif = true
+document.getElementById("alarm0")?.play?.()
+notifyUser("Waktu habis", psList[i].nama + " atas nama " + (p.nama || "-") + " sudah selesai.")
+}
+}else if(showRestoreNotification && sebelumnya>0 && sebelumnya!==sisa){
+notifyUser("Timer dipulihkan", psList[i].nama + " kembali aktif dengan sisa " + format(sisa))
+}
+}
+})
+}
+
+function tambahSnack(ps,index){
+dataPS[ps].snack[index]=(dataPS[ps].snack[index]||0)+1
+save()
+render()
+}
+
+function kurangSnack(ps,index){
+if(dataPS[ps].snack[index]){
+dataPS[ps].snack[index]--
+if(dataPS[ps].snack[index]<=0) delete dataPS[ps].snack[index]
+}
+save()
+render()
+}
+
+function start(i){
+ensureNotificationPermission()
+
+if(dataPS[i].detik===0){
+dataPS[i].detik=Number(dataPS[i].jam)*3600
+}
+
+dataPS[i].jalan=true
+dataPS[i].peringatan = dataPS[i].detik<=600 && dataPS[i].detik>0
+dataPS[i].selesaiNotif=false
+dataPS[i].endTime = Date.now() + (Number(dataPS[i].detik) * 1000)
+dataPS[i].lastTick = Date.now()
+
+save()
+render()
+}
+
+function pause(i){
+if(dataPS[i].jalan && dataPS[i].endTime){
+dataPS[i].detik = Math.max(0, Math.ceil((dataPS[i].endTime - Date.now())/1000))
+}
+dataPS[i].jalan=false
+dataPS[i].endTime=null
+dataPS[i].lastTick=Date.now()
+save()
+render()
+}
+
+function resetTimer(i){
+if(confirm("Reset timer " + psList[i].nama + " ?")){
+dataPS[i].detik=0
+dataPS[i].jalan=false
+dataPS[i].peringatan=false
+dataPS[i].selesaiNotif=false
+dataPS[i].endTime=null
+dataPS[i].lastTick=null
+dataPS[i].snack={}
+save()
+render()
+}
+}
+
+function tambah30(i){
+dataPS[i].detik += 1800
+if(dataPS[i].jalan){
+dataPS[i].endTime = (dataPS[i].endTime || Date.now()) + 1800*1000
+dataPS[i].selesaiNotif=false
+}
+save()
+render()
+}
+
+function tambah1jam(i){
+dataPS[i].detik += 3600
+if(dataPS[i].jalan){
+dataPS[i].endTime = (dataPS[i].endTime || Date.now()) + 3600*1000
+dataPS[i].selesaiNotif=false
+}
+save()
+render()
+}
+
+function bayar(i){
+let totalMain=hargaMain(i)
+let totalSnack=snackTotal(dataPS[i].snack)
+let total=totalMain+totalSnack
+
+pendapatan += total
+
+let now=new Date()
+
+transaksi.push({
+tanggal:now.toLocaleString(),
+ps:psList[i].nama,
+nama:dataPS[i].nama,
+total
+})
+
+cetakStruk(i,totalMain,totalSnack,total)
+
+dataPS[i]={
+...createDefaultPS(psList[i]),
+jam:dataPS[i].jam
+}
+
+save()
+render()
+}
+
+function cetakStruk(i,main,snack,total){
+let rincian = menuRincian(dataPS[i].snack)
+let itemsHTML = rincian.length
+? rincian.map(item=>`<tr>
+<td>${item.nama}</td>
+<td>${item.qty}</td>
+<td>Rp${rupiah(item.subtotal)}</td>
+</tr>`).join("")
+: `<tr><td colspan="3">Tidak ada menu tambahan</td></tr>`
+
+let w=window.open("","","width=360")
+w.document.write(`
+<html>
+<head>
+<title>Struk Rental PS</title>
+<style>
+body{font-family:Arial,sans-serif;padding:16px;color:#111}
+h3{margin:0 0 10px}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+td,th{padding:6px 4px;border-bottom:1px solid #ddd;text-align:left;font-size:13px}
+.total{font-weight:700}
+.small{font-size:12px;color:#555}
+</style>
+</head>
+<body>
+<h3>RENTAL MANTUL PS</h3>
+<div class="small">${new Date().toLocaleString("id-ID")}</div>
+<hr>
+<div>PS : ${psList[i].nama}</div>
+<div>Nama : ${dataPS[i].nama || "-"}</div>
+<div>Paket : ${dataPS[i].jam} Jam</div>
+
+<table>
+<tr><th>Item</th><th>Qty</th><th>Subtotal</th></tr>
+<tr><td>Billing ${dataPS[i].jam} Jam</td><td>1</td><td>Rp${rupiah(main)}</td></tr>
+${itemsHTML}
+<tr class="total"><td colspan="2">Total Menu</td><td>Rp${rupiah(snack)}</td></tr>
+<tr class="total"><td colspan="2">Grand Total</td><td>Rp${rupiah(total)}</td></tr>
+</table>
+</body>
+</html>
+`)
+w.document.close()
+w.focus()
+w.print()
+}
+
+function hapusRiwayat(){
+if(confirm("Hapus semua riwayat transaksi?")){
+transaksi=[]
+save()
+render()
+}
+}
+
+function resetPendapatan(){
+if(confirm("Reset total pendapatan?")){
+pendapatan=0
+save()
+render()
+}
+}
+
+
+function menuRincian(snack){
+let items=[]
+for(let i in snack){
+let qty=Number(snack[i]||0)
+if(qty>0){
+let m=menu[i]
+items.push({
+nama:m.nama,
+kategori:m.kategori || "Lainnya",
+qty,
+harga:m.harga,
+subtotal:m.harga*qty
+})
+}
+}
+return items
+}
+
+function tambahMenuBySelect(ps){
+let select=document.getElementById("menuSelect"+ps)
+let qtyInput=document.getElementById("menuQty"+ps)
+if(!select || !qtyInput) return
+
+let idx=select.value
+let qty=Math.max(1, Number(qtyInput.value||1))
+if(idx==="" || idx===null) return
+
+dataPS[ps].snack[idx]=(dataPS[ps].snack[idx]||0)+qty
+qtyInput.value=1
+save()
+render()
+}
+
+function countSummary(){
+let aktif = dataPS.filter(p=>p.jalan).length
+let warning = dataPS.filter(p=>p.detik>0 && p.detik<=600).length
+let omzet = dataPS.reduce((a,p,idx)=>a+hargaMain(idx)+snackTotal(p.snack),0)
+return {aktif,warning,omzet}
+}
+
+function renderSummary(){
+let el=document.getElementById("summary")
+if(!el) return
+let s=countSummary()
+el.innerHTML=`
+<div class="summary-card">
+<div class="summary-label">Sedang Main</div>
+<div class="summary-value">${s.aktif}</div>
+</div>
+<div class="summary-card">
+<div class="summary-label">Segera Habis</div>
+<div class="summary-value">${s.warning}</div>
+</div>
+<div class="summary-card">
+<div class="summary-label">Estimasi Tagihan</div>
+<div class="summary-value">Rp ${rupiah(s.omzet)}</div>
+</div>`
+}
+
+function getBadge(p){
+if(p.detik<=0 && !p.jalan && p.selesaiNotif) return '<span class="badge badgeOver">Waktu Habis</span>'
+if(p.detik>0 && p.detik<=600) return '<span class="badge badgeWarn">10 Menit Lagi</span>'
+if(p.jalan) return '<span class="badge badgePlay">Sedang Main</span>'
+return '<span class="badge badgeIdle">Siap Digunakan</span>'
+}
+
+function render(){
+let html=""
+
+psList.forEach((ps,i)=>{
+let p=dataPS[i]
+let snackHTML=""
+let grouped={"Makanan":[],"Minuman":[],"Snack":[],"Lainnya":[]}
+
+menu.forEach((m,index)=>{
+let qty=p.snack[index]||0
+if(qty>0){
+let key=m.kategori || "Lainnya"
+if(!grouped[key]) grouped[key]=[]
+grouped[key].push(`
+<div class="menuRow">
+<div class="menuName">${m.nama}</div>
+<div class="menuPrice">Rp ${rupiah(m.harga)} x ${qty}</div>
+<div class="menuQty">
+<button onclick="kurangSnack(${i},${index})">-</button>
+<span>${qty}</span>
+<button onclick="tambahSnack(${i},${index})">+</button>
+</div>
+</div>`)
+}
+})
+
+Object.keys(grouped).forEach(k=>{
+if(grouped[k].length){
+snackHTML += `
+<div class="menuGroup">
+<div class="menuGroupTitle">${k}</div>
+${grouped[k].join("")}
+</div>`
+}
+})
+
+if(!snackHTML){
+snackHTML = '<div class="menuEmpty">Belum ada menu dipilih.</div>'
+}
+
+let total=hargaMain(i)+snackTotal(p.snack)
+
+html += `
+<div class="pscard ${getStatusClass(p)}">
+<div class="psname">${ps.nama} (${ps.tipe}) ${getBadge(p)}</div>
+
+<input placeholder="Nama pemain" value="${p.nama}" oninput="dataPS[${i}].nama=this.value;save()">
+
+<select onchange="dataPS[${i}].jam=Number(this.value);save();render();">
+<option value="1" ${Number(p.jam)==1?"selected":""}>1 Jam</option>
+<option value="2" ${Number(p.jam)==2?"selected":""}>2 Jam</option>
+<option value="3" ${Number(p.jam)==3?"selected":""}>3 Jam</option>
+<option value="5" ${Number(p.jam)==5?"selected":""}>5 Jam</option>
+</select>
+
+<div class="meta"><span>Status sesi</span><span>${p.jalan ? "Timer aktif" : (p.selesaiNotif ? "Sesi selesai" : "Belum dimulai")}</span></div>
+
+<div id="timer${i}" class="timer ${p.detik<=600 && p.detik>0 ? "timerWarning" : ""}">
+${format(Number(p.detik||0))}
+</div>
+
+<div class="harga">
+<span>Total sementara</span>
+<b>Rp ${rupiah(total)}</b>
+</div>
+
+<div class="menuSection">
+<div class="menuTitle">Menu Snack & Minuman</div>
+<div class="menuToolbar">
+<select id="menuSelect${i}">
+<option value="">Pilih menu...</option>
+${menu.map((m,idx)=>`<option value="${idx}">${m.nama} - ${m.kategori} - Rp ${rupiah(m.harga)}</option>`).join("")}
+</select>
+<input id="menuQty${i}" type="number" min="1" value="1" placeholder="Qty">
+<button class="add" onclick="tambahMenuBySelect(${i})">Tambah Menu</button>
+</div>
+<div class="menuList">
+${snackHTML}
+</div>
+<div class="billBreakdown">
+<div class="billLine"><span>Paket billing (${p.jam} jam)</span><span>Rp ${rupiah(hargaMain(i))}</span></div>
+<div class="billLine"><span>Total menu dipilih</span><span>Rp ${rupiah(snackTotal(p.snack))}</span></div>
+<div class="billLine"><span><strong>Grand total</strong></span><span><strong>Rp ${rupiah(total)}</strong></span></div>
+</div>
+</div>
+
+<div class="controls" style="margin-top:18px;">
+<button class="start" onclick="start(${i})">Start</button>
+<button class="pause" onclick="pause(${i})">Pause</button>
+<button class="add" onclick="tambah30(${i})">+30m</button>
+<button class="add" onclick="tambah1jam(${i})">+1h</button>
+<button class="reset" onclick="resetTimer(${i})">Reset</button>
+<button class="start" onclick="bayar(${i})">Bayar</button>
+</div>
+</div>`
+})
+
+document.getElementById("psContainer").innerHTML = html
+renderSummary()
+renderHistory()
+let totalPendEl=document.getElementById("totalPend")
+if(totalPendEl) totalPendEl.innerText = pendapatan
+}
+
+function renderHistory(){
+let html=""
+transaksi.forEach(t=>{
+html += `
+<tr>
+<td>${t.tanggal}</td>
+<td>${t.ps}</td>
+<td>${t.nama}</td>
+<td>Rp ${rupiah(t.total)}</td>
+</tr>`
+})
+let history=document.getElementById("history")
+if(history) history.innerHTML = html
+}
+
+function save(){
+localStorage.setItem("dataPS",JSON.stringify(dataPS))
+localStorage.setItem("trans",JSON.stringify(transaksi))
+localStorage.setItem("pend",pendapatan)
+}
+
+function tick(){
+const now=Date.now()
+
+dataPS.forEach((p,i)=>{
+if(p.jalan && p.endTime){
+const sisa = Math.max(0, Math.ceil((p.endTime - now)/1000))
+const prevDetik = Number(p.detik || 0)
+p.detik = sisa
+p.lastTick = now
+
+if(sisa<=600 && sisa>0 && !p.peringatan){
+document.getElementById("alarm10")?.play?.()
+p.peringatan = true
+notifyUser("Peringatan 10 menit", psList[i].nama + " tinggal " + format(sisa))
+}
+
+if(sisa===0){
+p.jalan = false
+p.endTime = null
+if(!p.selesaiNotif){
+p.selesaiNotif = true
+document.getElementById("alarm0")?.play?.()
+notifyUser("Waktu habis", psList[i].nama + " atas nama " + (p.nama || "-") + " sudah selesai.")
+}
+}
+
+let timer=document.getElementById("timer"+i)
+if(timer){
+timer.innerText = format(p.detik)
+timer.className = "timer" + (p.detik<=600 && p.detik>0 ? " timerWarning" : "")
+}
+
+let card = timer ? timer.closest(".pscard") : null
+if(card){
+card.className = "pscard " + getStatusClass(p)
+}
+
+if(prevDetik !== p.detik){
+const statusEl = card ? card.querySelector(".meta span:last-child") : null
+if(statusEl){
+statusEl.textContent = p.jalan ? "Timer aktif" : (p.selesaiNotif ? "Sesi selesai" : "Belum dimulai")
+}
+}
+}
+})
+
+save()
+renderSummary()
+}
+
+document.addEventListener("visibilitychange", ()=>{
+if(!document.hidden){
+recalcRunningTimers(true)
+render()
+}
+})
+
+window.addEventListener("focus", ()=>{
+recalcRunningTimers(true)
+render()
+})
+
+ensureNotificationPermission()
+registerServiceWorker()
+setupInstallPrompt()
+recalcRunningTimers(true)
+setInterval(tick,1000)
+render()
+</script>
+
+</body>
+</html>
 padding:15px;
 border-radius:10px;
 min-width:150px;
