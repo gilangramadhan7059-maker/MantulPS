@@ -48,7 +48,286 @@ min-height:100%;
 }
 
 body{
-padding:32px 18px 42px;
+padding:110px 18px 42px;
+}
+
+.navbar{
+position:fixed;
+top:18px;
+left:18px;
+right:18px;
+z-index:100;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
+padding:14px 18px;
+border:1px solid var(--line);
+border-radius:22px;
+background:rgba(8,12,24,.78);
+backdrop-filter:blur(18px);
+box-shadow:var(--shadow);
+}
+
+.nav-brand{
+display:flex;
+align-items:center;
+gap:12px;
+min-width:240px;
+}
+
+.brand-mark{
+width:46px;
+height:46px;
+border-radius:16px;
+display:grid;
+place-items:center;
+font-weight:800;
+background:linear-gradient(135deg,var(--accent),var(--accent-2));
+color:white;
+box-shadow:0 12px 24px rgba(124,156,255,.28);
+}
+
+.brand-title{font-size:16px;font-weight:800}
+.brand-subtitle{font-size:12px;color:var(--muted)}
+
+.nav-links{
+display:flex;
+align-items:center;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.nav-link{
+padding:10px 16px;
+border-radius:999px;
+background:rgba(255,255,255,.04);
+border:1px solid transparent;
+color:var(--text);
+box-shadow:none;
+}
+
+.nav-link.active{
+background:linear-gradient(135deg,rgba(124,156,255,.22),rgba(155,124,255,.18));
+border-color:rgba(124,156,255,.25);
+}
+
+.nav-actions{display:flex;align-items:center;gap:10px}
+.installBtn{min-width:150px}
+.pageWrap{max-width:1280px;margin:0 auto}
+.pageSection{display:none;animation:fadeIn .22s ease}
+.pageSection.active{display:block}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(6px)}
+to{opacity:1;transform:none}
+}
+
+.sectionHero{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:18px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.eyebrow,.panelEyebrow{
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.14em;
+color:var(--muted);
+margin-bottom:8px;
+font-weight:700;
+}
+
+.sectionTitle{margin:0;font-size:clamp(28px,4vw,42px);font-weight:800}
+.sectionDesc{margin:8px 0 0;color:var(--muted);max-width:760px}
+.heroPill{
+padding:10px 14px;
+border-radius:999px;
+background:rgba(255,255,255,.05);
+border:1px solid var(--line);
+color:var(--text);
+}
+
+.contentGrid{display:grid;gap:20px;margin-bottom:20px}
+.contentGrid.twoCols{grid-template-columns:repeat(2,minmax(0,1fr))}
+.contentGrid.oneCol{grid-template-columns:1fr}
+
+.panelCard{
+background:var(--panel);
+backdrop-filter:blur(18px);
+border:1px solid var(--line);
+border-radius:24px;
+padding:20px;
+box-shadow:var(--shadow);
+}
+
+.panelHead{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+margin-bottom:16px;
+flex-wrap:wrap;
+}
+
+.panelHead h3{margin:0;font-size:22px}
+
+.topStats{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:16px;
+margin-bottom:20px;
+}
+
+.statCard{
+padding:18px;
+border-radius:22px;
+background:var(--panel);
+border:1px solid var(--line);
+box-shadow:var(--shadow);
+}
+
+.statLabel{
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.12em;
+color:var(--muted);
+margin-bottom:8px;
+}
+
+.statValue{font-size:28px;font-weight:800}
+
+.barChart{
+display:grid;
+grid-template-columns:repeat(7,minmax(0,1fr));
+gap:12px;
+align-items:end;
+min-height:250px;
+padding-top:12px;
+}
+
+.barItem{
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+align-items:center;
+gap:10px;
+height:100%;
+}
+
+.barValue{
+width:100%;
+max-width:88px;
+border-radius:18px 18px 8px 8px;
+background:linear-gradient(180deg,var(--accent),var(--accent-2));
+min-height:14px;
+box-shadow:0 12px 26px rgba(124,156,255,.22);
+}
+
+.barLabel,.barNumber{font-size:12px;text-align:center}
+.barLabel{color:var(--muted)}
+.barNumber{color:var(--text);font-weight:700}
+
+.overviewBreakdown,.sessionList,.simpleList{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.breakdownRow,.simpleRow{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:14px 16px;
+border-radius:16px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.breakdownRow span:first-child{color:var(--muted)}
+.simpleRow small{color:var(--muted);display:block;margin-top:4px}
+.tableWrap{overflow:auto}
+
+.expenseForm{
+display:grid;
+grid-template-columns:1.2fr 1fr 1fr auto;
+gap:12px;
+}
+
+.expenseForm input,
+.expenseForm select,
+.pscard input,
+.pscard select{
+width:100%;
+padding:12px 14px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.10);
+background:rgba(255,255,255,.06);
+color:var(--text);
+outline:none;
+}
+
+.expenseForm select option,
+.pscard select option{
+background:#121a30;
+color:#e6e9ff;
+}
+
+.rekapCards{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:12px;
+}
+
+.rekapCard{
+padding:16px;
+border-radius:18px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.rekapCard h4{margin:0 0 10px;font-size:16px}
+.rekapMeta{
+display:flex;
+justify-content:space-between;
+gap:8px;
+color:var(--muted);
+font-size:13px;
+margin-bottom:8px;
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(3,minmax(150px,1fr));
+gap:12px;
+width:min(100%,520px);
+}
+
+.dashboardCard,.historyCard{margin-bottom:20px}
+
+@media(max-width:980px){
+.contentGrid.twoCols,.topStats,.rekapCards,.expenseForm{grid-template-columns:1fr}
+.navbar{
+position:sticky;
+top:12px;
+left:12px;
+right:12px;
+padding:14px;
+flex-direction:column;
+align-items:stretch;
+}
+body{padding:24px 12px 28px}
+.nav-brand,.nav-actions,.nav-links{width:100%}
+.nav-links{justify-content:space-between}
+}
+
+@media(max-width:760px){
+.barChart{grid-template-columns:repeat(4,minmax(0,1fr))}
+.summary{grid-template-columns:1fr}
 }
 
 .container{
@@ -299,7 +578,6 @@ body{padding:20px 12px 30px}
 .controls{grid-template-columns:1fr}
 }
 
-
 .menuSection{
 margin-top:18px;
 padding:16px;
@@ -315,6 +593,34 @@ letter-spacing:.12em;
 color:var(--muted);
 margin:0 0 12px;
 font-weight:700;
+}
+
+@media(max-width:560px){
+}
+
+
+.menuDropdownRow{
+display:grid;
+grid-template-columns:minmax(0,1.5fr) 120px auto;
+gap:10px;
+align-items:center;
+margin-bottom:14px;
+}
+
+.menuDropdownSelect,
+.menuQtyInput{
+width:100%;
+padding:12px 14px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.10);
+background:rgba(255,255,255,.06);
+color:var(--text);
+outline:none;
+}
+
+.menuDropdownSelect option{
+background:#121a30;
+color:#dfe6ff;
 }
 
 .menuList{
@@ -363,6 +669,15 @@ color:#0c1634;
 box-shadow:none;
 }
 
+.menuEmpty{
+padding:12px 14px;
+border-radius:14px;
+background:rgba(255,255,255,.04);
+border:1px dashed rgba(255,255,255,.10);
+color:var(--muted);
+font-size:14px;
+}
+
 .billBreakdown{
 margin-top:12px;
 padding:12px 14px;
@@ -388,7 +703,7 @@ font-size:18px;
 }
 
 @media(max-width:760px){
-.menuRow{
+.menuDropdownRow,.menuRow{
 grid-template-columns:1fr;
 }
 .menuPrice,.menuQty{
@@ -397,111 +712,241 @@ justify-content:flex-start;
 }
 }
 
-.menuToolbar{
-display:grid;
-grid-template-columns:1fr 130px 120px;
-gap:10px;
-margin-bottom:12px;
-}
 
-.menuToolbar select,.menuToolbar input{
-width:100%;
-padding:12px 14px;
-border-radius:14px;
-border:1px solid rgba(255,255,255,.10);
-background:rgba(255,255,255,.06);
-color:var(--text);
-outline:none;
-}
-
-.menuToolbar input::placeholder{color:var(--muted)}
-
-.menuToolbar button{
-box-shadow:none;
-}
-
-.menuGroup{
-margin-top:14px;
-padding-top:12px;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-.menuGroup:first-of-type{
-margin-top:0;
-padding-top:0;
-border-top:none;
-}
-
-.menuGroupTitle{
-font-size:12px;
-text-transform:uppercase;
-letter-spacing:.12em;
-color:var(--muted);
-margin:0 0 10px;
-font-weight:800;
-}
-
-.menuEmpty{
-padding:12px 14px;
-border-radius:14px;
-background:rgba(255,255,255,.04);
-border:1px dashed rgba(255,255,255,.10);
-color:var(--muted);
-font-size:14px;
-}
-
-@media(max-width:760px){
-.menuToolbar{
-grid-template-columns:1fr;
-}
-}
+.snackGrid{display:none!important;}
+.snackBtn{display:none!important;}
+.qtyBox{display:none!important;}
 
 </style>
 </head>
 
 <body>
+<nav class="navbar">
+  <div class="nav-brand">
+    <div class="brand-mark">PS</div>
+    <div>
+      <div class="brand-title">Rental MANTUL PS Management</div>
+      <div class="brand-subtitle">Billing, timer, dan rekap usaha</div>
+    </div>
+  </div>
 
-<header>BILLING RENTAL MANTUL PLAYSTATION</header>
+  <div class="nav-links">
+    <button id="navHome" class="nav-link active" onclick="showSection('home')">Home</button>
+    <button id="navTimer" class="nav-link" onclick="showSection('timer')">Timer</button>
+    <button id="navRekap" class="nav-link" onclick="showSection('rekap')">Rekap</button>
+  </div>
 
-<div class="dashboard">
+  <div class="nav-actions">
+    <button id="installBtn" class="add installBtn" style="display:none;">Install App</button>
+  </div>
+</nav>
 
-<div class="card">
-Total Pendapatan
-<h2 id="totalPend">0</h2>
-<button onclick="resetPendapatan()">Reset Pendapatan</button>
-</div>
+<main class="pageWrap">
+  <section id="homeSection" class="pageSection active">
+    <div class="sectionHero">
+      <div>
+        <div class="eyebrow">Home</div>
+        <h1 class="sectionTitle">Ringkasan bisnis rental</h1>
+        <p class="sectionDesc">Pantau income, pengeluaran, dan performa harian dalam satu tampilan.</p>
+      </div>
+      <div class="heroPill">Live Dashboard</div>
+    </div>
 
-</div>
+    <div class="topStats" id="homeStats"></div>
 
-<div class="container" id="psContainer"></div>
+    <div class="contentGrid twoCols">
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Grafik Income</div>
+            <h3>7 hari terakhir</h3>
+          </div>
+        </div>
+        <div id="incomeChart" class="barChart"></div>
+      </div>
 
-<div style="padding:15px">
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Ringkasan Cepat</div>
+            <h3>Income vs pengeluaran</h3>
+          </div>
+        </div>
+        <div id="overviewBreakdown" class="overviewBreakdown"></div>
+      </div>
+    </div>
 
-<h3>Riwayat Transaksi</h3>
-<button onclick="hapusRiwayat()">Hapus Riwayat</button>
+    <div class="contentGrid twoCols">
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Sesi Aktif</div>
+            <h3>Status timer PlayStation</h3>
+          </div>
+        </div>
+        <div id="activeSessions" class="sessionList"></div>
+      </div>
 
-<table>
-<thead>
-<tr>
-<th>Tanggal</th>
-<th>PS</th>
-<th>Nama</th>
-<th>Total</th>
-</tr>
-</thead>
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Transaksi Terbaru</div>
+            <h3>Income terakhir</h3>
+          </div>
+        </div>
+        <div id="recentTransactionsHome" class="simpleList"></div>
+      </div>
+    </div>
+  </section>
 
-<tbody id="history"></tbody>
+  <section id="timerSection" class="pageSection">
+    <div class="sectionHero">
+      <div>
+        <div class="eyebrow">Timer</div>
+        <h1 class="sectionTitle">Billing utama</h1>
+        <p class="sectionDesc">Atur sesi bermain, menu tambahan, dan pembayaran.</p>
+      </div>
+      <div id="summary" class="summary"></div>
+    </div>
 
-</table>
+    <div class="contentGrid oneCol">
+      <div class="panelCard dashboardCard">
+        <div class="dashboard">
+          <div class="card">
+            Total Pendapatan
+            <h2 id="totalPend">0</h2>
+            <button onclick="resetPendapatan()">Reset Pendapatan</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <div class="container" id="psContainer"></div>
+
+    <div class="panelCard historyCard">
+      <div class="panelHead">
+        <div>
+          <div class="panelEyebrow">Riwayat</div>
+          <h3>Riwayat transaksi</h3>
+        </div>
+        <button onclick="hapusRiwayat()">Hapus Riwayat</button>
+      </div>
+
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>PS</th>
+              <th>Nama</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="history"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="rekapSection" class="pageSection">
+    <div class="sectionHero">
+      <div>
+        <div class="eyebrow">Rekap</div>
+        <h1 class="sectionTitle">Income & pengeluaran</h1>
+        <p class="sectionDesc">Lihat rekap harian, bulanan, tahunan, serta catat pengeluaran operasional.</p>
+      </div>
+      <div class="heroPill">Daily / Monthly / Yearly</div>
+    </div>
+
+    <div class="contentGrid twoCols">
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Input Pengeluaran</div>
+            <h3>Tambah pengeluaran baru</h3>
+          </div>
+        </div>
+
+        <div class="expenseForm">
+          <input id="expenseName" placeholder="Nama pengeluaran, contoh: Beli minuman">
+          <select id="expenseCategory">
+            <option value="Stok">Stok</option>
+            <option value="Listrik">Listrik</option>
+            <option value="Internet">Internet</option>
+            <option value="Perawatan">Perawatan</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+          <input id="expenseAmount" type="number" min="0" placeholder="Nominal pengeluaran">
+          <button class="add" onclick="addExpense()">Simpan Pengeluaran</button>
+        </div>
+      </div>
+
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Rekap Ringkas</div>
+            <h3>Harian, bulanan, tahunan</h3>
+          </div>
+        </div>
+        <div id="rekapCards" class="rekapCards"></div>
+      </div>
+    </div>
+
+    <div class="contentGrid twoCols">
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Rekap Detail</div>
+            <h3>Income vs pengeluaran</h3>
+          </div>
+        </div>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Periode</th>
+                <th>Income</th>
+                <th>Pengeluaran</th>
+                <th>Laba Bersih</th>
+              </tr>
+            </thead>
+            <tbody id="rekapTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panelCard">
+        <div class="panelHead">
+          <div>
+            <div class="panelEyebrow">Daftar Pengeluaran</div>
+            <h3>Pengeluaran terbaru</h3>
+          </div>
+        </div>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Kategori</th>
+                <th>Nama</th>
+                <th>Nominal</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="expenseHistory"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <audio id="alarm10">
-<source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg">
+  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg">
 </audio>
 
 <audio id="alarm0">
-<source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg">
+  <source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg">
 </audio>
 
 <script>
@@ -571,6 +1016,7 @@ let dataPS=(JSON.parse(localStorage.getItem("dataPS"))||psList.map(createDefault
 
 let transaksi=JSON.parse(localStorage.getItem("trans"))||[]
 let pendapatan=parseInt(localStorage.getItem("pend"))||0
+let pengeluaran=JSON.parse(localStorage.getItem("pengeluaran"))||[]
 
 const menu=[
 {nama:"Pop Mie",harga:7000,kategori:"Makanan"},
@@ -759,6 +1205,7 @@ let now=new Date()
 
 transaksi.push({
 tanggal:now.toLocaleString(),
+createdAt:now.toISOString(),
 ps:psList[i].nama,
 nama:dataPS[i].nama,
 total
@@ -783,9 +1230,9 @@ let itemsHTML = rincian.length
 <td>${item.qty}</td>
 <td>Rp${rupiah(item.subtotal)}</td>
 </tr>`).join("")
-: `<tr><td colspan="3">Tidak ada menu tambahan</td></tr>`
+: `<tr><td>-</td><td>0</td><td>Rp0</td></tr>`
 
-let w=window.open("","","width=360")
+let w=window.open("","","width=380")
 w.document.write(`
 <html>
 <head>
@@ -793,23 +1240,28 @@ w.document.write(`
 <style>
 body{font-family:Arial,sans-serif;padding:16px;color:#111}
 h3{margin:0 0 10px}
-table{width:100%;border-collapse:collapse;margin-top:8px}
-td,th{padding:6px 4px;border-bottom:1px solid #ddd;text-align:left;font-size:13px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+td,th{padding:7px 4px;border-bottom:1px solid #ddd;text-align:left;font-size:13px;vertical-align:top}
 .total{font-weight:700}
-.small{font-size:12px;color:#555}
+
+.snackGrid{display:none!important;}
+.snackBtn{display:none!important;}
+.qtyBox{display:none!important;}
+
 </style>
 </head>
 <body>
 <h3>RENTAL MANTUL PS</h3>
-<div class="small">${new Date().toLocaleString("id-ID")}</div>
+<div>${new Date().toLocaleString("id-ID")}</div>
 <hr>
-<div>PS : ${psList[i].nama}</div>
-<div>Nama : ${dataPS[i].nama || "-"}</div>
-<div>Paket : ${dataPS[i].jam} Jam</div>
+<div><strong>PS:</strong> ${psList[i].nama}</div>
+<div><strong>Nama:</strong> ${dataPS[i].nama || "-"}</div>
+<div><strong>Paket:</strong> ${dataPS[i].jam} Jam</div>
 
 <table>
-<tr><th>Item</th><th>Qty</th><th>Subtotal</th></tr>
-<tr><td>Billing ${dataPS[i].jam} Jam</td><td>1</td><td>Rp${rupiah(main)}</td></tr>
+<tr><th colspan="3">Billing</th></tr>
+<tr><td colspan="2">Billing ${dataPS[i].jam} Jam</td><td>Rp${rupiah(main)}</td></tr>
+<tr><th>Nama menu</th><th>Qty</th><th>Subtotal</th></tr>
 ${itemsHTML}
 <tr class="total"><td colspan="2">Total Menu</td><td>Rp${rupiah(snack)}</td></tr>
 <tr class="total"><td colspan="2">Grand Total</td><td>Rp${rupiah(total)}</td></tr>
@@ -838,6 +1290,209 @@ render()
 }
 }
 
+function formatDateKey(date){
+const d = new Date(date)
+return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")
+}
+
+function formatMonthKey(date){
+const d = new Date(date)
+return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")
+}
+
+function normalizeTransDate(item){
+if(item.createdAt) return new Date(item.createdAt)
+return new Date(item.tanggal)
+}
+
+function getPeriodTotals(){
+const now = new Date()
+const dayKey = formatDateKey(now)
+const monthKey = formatMonthKey(now)
+const yearKey = String(now.getFullYear())
+
+const incomeDay = transaksi.filter(t=>formatDateKey(normalizeTransDate(t))===dayKey).reduce((a,b)=>a+Number(b.total||0),0)
+const incomeMonth = transaksi.filter(t=>formatMonthKey(normalizeTransDate(t))===monthKey).reduce((a,b)=>a+Number(b.total||0),0)
+const incomeYear = transaksi.filter(t=>String(normalizeTransDate(t).getFullYear())===yearKey).reduce((a,b)=>a+Number(b.total||0),0)
+
+const expenseDay = pengeluaran.filter(t=>formatDateKey(t.createdAt||t.tanggal)===dayKey).reduce((a,b)=>a+Number(b.amount||0),0)
+const expenseMonth = pengeluaran.filter(t=>formatMonthKey(t.createdAt||t.tanggal)===monthKey).reduce((a,b)=>a+Number(b.amount||0),0)
+const expenseYear = pengeluaran.filter(t=>String(new Date(t.createdAt||t.tanggal).getFullYear())===yearKey).reduce((a,b)=>a+Number(b.amount||0),0)
+
+return {
+  day:{income:incomeDay, expense:expenseDay, net:incomeDay-expenseDay},
+  month:{income:incomeMonth, expense:expenseMonth, net:incomeMonth-expenseMonth},
+  year:{income:incomeYear, expense:expenseYear, net:incomeYear-expenseYear}
+}
+}
+
+function getIncomeLast7Days(){
+let arr=[]
+for(let i=6;i>=0;i--){
+  const d = new Date()
+  d.setDate(d.getDate()-i)
+  const key = formatDateKey(d)
+  const value = transaksi.filter(t=>formatDateKey(normalizeTransDate(t))===key).reduce((a,b)=>a+Number(b.total||0),0)
+  arr.push({
+    label: d.toLocaleDateString("id-ID",{weekday:"short"}),
+    dateLabel: d.toLocaleDateString("id-ID",{day:"2-digit",month:"2-digit"}),
+    value
+  })
+}
+return arr
+}
+
+function addExpense(){
+const name=document.getElementById("expenseName")?.value?.trim()
+const category=document.getElementById("expenseCategory")?.value || "Lainnya"
+const amount=Number(document.getElementById("expenseAmount")?.value || 0)
+
+if(!name || amount<=0){
+alert("Isi nama dan nominal pengeluaran dulu.")
+return
+}
+
+pengeluaran.unshift({
+  nama:name,
+  kategori:category,
+  amount,
+  tanggal:new Date().toLocaleString("id-ID"),
+  createdAt:new Date().toISOString()
+})
+
+document.getElementById("expenseName").value=""
+document.getElementById("expenseAmount").value=""
+save()
+render()
+}
+
+function deleteExpense(index){
+if(!confirm("Hapus pengeluaran ini?")) return
+pengeluaran.splice(index,1)
+save()
+render()
+}
+
+function showSection(section){
+document.querySelectorAll(".pageSection").forEach(el=>el.classList.remove("active"))
+document.querySelectorAll(".nav-link").forEach(el=>el.classList.remove("active"))
+
+const map = {home:["homeSection","navHome"], timer:["timerSection","navTimer"], rekap:["rekapSection","navRekap"]}
+const ids = map[section]
+if(ids){
+  document.getElementById(ids[0])?.classList.add("active")
+  document.getElementById(ids[1])?.classList.add("active")
+  window.scrollTo({top:0,behavior:"smooth"})
+}
+}
+
+function renderHome(){
+const statsEl=document.getElementById("homeStats")
+const sessionsActive=dataPS.filter(p=>p.jalan).length
+const incomeAll=transaksi.reduce((a,b)=>a+Number(b.total||0),0)
+const expenseAll=pengeluaran.reduce((a,b)=>a+Number(b.amount||0),0)
+const netAll=incomeAll-expenseAll
+
+if(statsEl){
+statsEl.innerHTML=`
+<div class="statCard"><div class="statLabel">Total Income</div><div class="statValue">Rp ${rupiah(incomeAll)}</div></div>
+<div class="statCard"><div class="statLabel">Total Pengeluaran</div><div class="statValue">Rp ${rupiah(expenseAll)}</div></div>
+<div class="statCard"><div class="statLabel">Laba Bersih</div><div class="statValue">Rp ${rupiah(netAll)}</div></div>
+<div class="statCard"><div class="statLabel">Sesi Aktif</div><div class="statValue">${sessionsActive}</div></div>`
+}
+
+const chartEl=document.getElementById("incomeChart")
+if(chartEl){
+  const data=getIncomeLast7Days()
+  const max=Math.max(...data.map(x=>x.value),1)
+  chartEl.innerHTML=data.map(item=>`
+    <div class="barItem">
+      <div class="barNumber">Rp ${rupiah(item.value)}</div>
+      <div class="barValue" style="height:${Math.max(14, Math.round((item.value/max)*170))}px"></div>
+      <div class="barLabel">${item.label}<br>${item.dateLabel}</div>
+    </div>
+  `).join("")
+}
+
+const p=getPeriodTotals()
+const overview=document.getElementById("overviewBreakdown")
+if(overview){
+overview.innerHTML=`
+<div class="breakdownRow"><span>Income Hari Ini</span><strong>Rp ${rupiah(p.day.income)}</strong></div>
+<div class="breakdownRow"><span>Pengeluaran Hari Ini</span><strong>Rp ${rupiah(p.day.expense)}</strong></div>
+<div class="breakdownRow"><span>Laba Bersih Bulan Ini</span><strong>Rp ${rupiah(p.month.net)}</strong></div>
+<div class="breakdownRow"><span>Laba Bersih Tahun Ini</span><strong>Rp ${rupiah(p.year.net)}</strong></div>`
+}
+
+const activeEl=document.getElementById("activeSessions")
+if(activeEl){
+  const aktif=dataPS.map((p,idx)=>({...p, ps:psList[idx]})).filter(x=>x.jalan)
+  activeEl.innerHTML=aktif.length ? aktif.map(x=>`
+    <div class="simpleRow">
+      <div><strong>${x.ps.nama} (${x.ps.tipe})</strong><small>${x.nama || "Tanpa nama pemain"}</small></div>
+      <strong>${format(Number(x.detik||0))}</strong>
+    </div>
+  `).join("") : '<div class="simpleRow"><div><strong>Tidak ada sesi aktif</strong><small>Semua timer sedang berhenti.</small></div><strong>-</strong></div>'
+}
+
+const recentEl=document.getElementById("recentTransactionsHome")
+if(recentEl){
+  recentEl.innerHTML=transaksi.length ? transaksi.slice(0,5).map(t=>`
+    <div class="simpleRow">
+      <div><strong>${t.ps}</strong><small>${t.nama || "-"} • ${t.tanggal}</small></div>
+      <strong>Rp ${rupiah(t.total)}</strong>
+    </div>
+  `).join("") : '<div class="simpleRow"><div><strong>Belum ada transaksi</strong><small>Riwayat income akan tampil di sini.</small></div><strong>-</strong></div>'
+}
+}
+
+function renderRekap(){
+const periods=getPeriodTotals()
+
+const cards=document.getElementById("rekapCards")
+if(cards){
+cards.innerHTML=`
+<div class="rekapCard">
+  <h4>Harian</h4>
+  <div class="rekapMeta"><span>Income</span><strong>Rp ${rupiah(periods.day.income)}</strong></div>
+  <div class="rekapMeta"><span>Pengeluaran</span><strong>Rp ${rupiah(periods.day.expense)}</strong></div>
+  <div class="rekapMeta"><span>Laba Bersih</span><strong>Rp ${rupiah(periods.day.net)}</strong></div>
+</div>
+<div class="rekapCard">
+  <h4>Bulanan</h4>
+  <div class="rekapMeta"><span>Income</span><strong>Rp ${rupiah(periods.month.income)}</strong></div>
+  <div class="rekapMeta"><span>Pengeluaran</span><strong>Rp ${rupiah(periods.month.expense)}</strong></div>
+  <div class="rekapMeta"><span>Laba Bersih</span><strong>Rp ${rupiah(periods.month.net)}</strong></div>
+</div>
+<div class="rekapCard">
+  <h4>Tahunan</h4>
+  <div class="rekapMeta"><span>Income</span><strong>Rp ${rupiah(periods.year.income)}</strong></div>
+  <div class="rekapMeta"><span>Pengeluaran</span><strong>Rp ${rupiah(periods.year.expense)}</strong></div>
+  <div class="rekapMeta"><span>Laba Bersih</span><strong>Rp ${rupiah(periods.year.net)}</strong></div>
+</div>`
+}
+
+const table=document.getElementById("rekapTable")
+if(table){
+table.innerHTML=`
+<tr><td>Harian</td><td>Rp ${rupiah(periods.day.income)}</td><td>Rp ${rupiah(periods.day.expense)}</td><td>Rp ${rupiah(periods.day.net)}</td></tr>
+<tr><td>Bulanan</td><td>Rp ${rupiah(periods.month.income)}</td><td>Rp ${rupiah(periods.month.expense)}</td><td>Rp ${rupiah(periods.month.net)}</td></tr>
+<tr><td>Tahunan</td><td>Rp ${rupiah(periods.year.income)}</td><td>Rp ${rupiah(periods.year.expense)}</td><td>Rp ${rupiah(periods.year.net)}</td></tr>`
+}
+
+const expHist=document.getElementById("expenseHistory")
+if(expHist){
+expHist.innerHTML = pengeluaran.length ? pengeluaran.slice(0,20).map((e,idx)=>`
+<tr>
+<td>${e.tanggal}</td>
+<td>${e.kategori}</td>
+<td>${e.nama}</td>
+<td>Rp ${rupiah(e.amount)}</td>
+<td><button class="reset" onclick="deleteExpense(${idx})">Hapus</button></td>
+</tr>`).join("") : '<tr><td colspan="5">Belum ada data pengeluaran.</td></tr>'
+}
+}
+
 
 function menuRincian(snack){
 let items=[]
@@ -857,17 +1512,19 @@ subtotal:m.harga*qty
 return items
 }
 
-function tambahMenuBySelect(ps){
+function tambahMenu(ps){
 let select=document.getElementById("menuSelect"+ps)
-let qtyInput=document.getElementById("menuQty"+ps)
-if(!select || !qtyInput) return
+let qtyInput=document.getElementById("menuQtyInput"+ps)
+if(!select) return
 
 let idx=select.value
-let qty=Math.max(1, Number(qtyInput.value||1))
 if(idx==="" || idx===null) return
 
+let qty=Math.max(1, Number(qtyInput?.value || 1))
 dataPS[ps].snack[idx]=(dataPS[ps].snack[idx]||0)+qty
-qtyInput.value=1
+
+if(qtyInput) qtyInput.value=1
+select.value=""
 save()
 render()
 }
@@ -911,39 +1568,20 @@ let html=""
 psList.forEach((ps,i)=>{
 let p=dataPS[i]
 let snackHTML=""
-let grouped={"Makanan":[],"Minuman":[],"Snack":[],"Lainnya":[]}
 
 menu.forEach((m,index)=>{
 let qty=p.snack[index]||0
-if(qty>0){
-let key=m.kategori || "Lainnya"
-if(!grouped[key]) grouped[key]=[]
-grouped[key].push(`
-<div class="menuRow">
-<div class="menuName">${m.nama}</div>
-<div class="menuPrice">Rp ${rupiah(m.harga)} x ${qty}</div>
-<div class="menuQty">
+snackHTML += `
+<div class="snackBtn">
+${m.nama}
+Rp${m.harga}
+<div class="qtyBox">
 <button onclick="kurangSnack(${i},${index})">-</button>
-<span>${qty}</span>
+${qty}
 <button onclick="tambahSnack(${i},${index})">+</button>
 </div>
-</div>`)
-}
-})
-
-Object.keys(grouped).forEach(k=>{
-if(grouped[k].length){
-snackHTML += `
-<div class="menuGroup">
-<div class="menuGroupTitle">${k}</div>
-${grouped[k].join("")}
 </div>`
-}
 })
-
-if(!snackHTML){
-snackHTML = '<div class="menuEmpty">Belum ada menu dipilih.</div>'
-}
 
 let total=hargaMain(i)+snackTotal(p.snack)
 
@@ -972,22 +1610,22 @@ ${format(Number(p.detik||0))}
 </div>
 
 <div class="menuSection">
-<div class="menuTitle">Menu Snack & Minuman</div>
-<div class="menuToolbar">
-<select id="menuSelect${i}">
+<div class="menuTitle">Pilih Menu</div>
+<div class="menuDropdownRow">
+<select id="menuSelect${i}" class="menuDropdownSelect">
 <option value="">Pilih menu...</option>
-${menu.map((m,idx)=>`<option value="${idx}">${m.nama} - ${m.kategori} - Rp ${rupiah(m.harga)}</option>`).join("")}
+${menu.map((m,idx)=>`<option value="${idx}">${m.nama} • ${m.kategori} • Rp ${rupiah(m.harga)}</option>`).join("")}
 </select>
-<input id="menuQty${i}" type="number" min="1" value="1" placeholder="Qty">
-<button class="add" onclick="tambahMenuBySelect(${i})">Tambah Menu</button>
+<input id="menuQtyInput${i}" class="menuQtyInput" type="number" min="1" value="1">
+<button class="add" onclick="tambahMenu(${i})">Tambah</button>
 </div>
 <div class="menuList">
 ${snackHTML}
 </div>
 <div class="billBreakdown">
-<div class="billLine"><span>Paket billing (${p.jam} jam)</span><span>Rp ${rupiah(hargaMain(i))}</span></div>
-<div class="billLine"><span>Total menu dipilih</span><span>Rp ${rupiah(snackTotal(p.snack))}</span></div>
-<div class="billLine"><span><strong>Grand total</strong></span><span><strong>Rp ${rupiah(total)}</strong></span></div>
+<div class="billLine"><span>Billing (${p.jam} jam)</span><span>Rp ${rupiah(hargaMain(i))}</span></div>
+<div class="billLine"><span>Total Menu</span><span>Rp ${rupiah(snackTotal(p.snack))}</span></div>
+<div class="billLine"><span><strong>Grand Total</strong></span><span><strong>Rp ${rupiah(total)}</strong></span></div>
 </div>
 </div>
 
@@ -1006,7 +1644,9 @@ document.getElementById("psContainer").innerHTML = html
 renderSummary()
 renderHistory()
 let totalPendEl=document.getElementById("totalPend")
-if(totalPendEl) totalPendEl.innerText = pendapatan
+if(totalPendEl) totalPendEl.innerText = "Rp " + rupiah(pendapatan)
+renderHome()
+renderRekap()
 }
 
 function renderHistory(){
@@ -1021,13 +1661,14 @@ html += `
 </tr>`
 })
 let history=document.getElementById("history")
-if(history) history.innerHTML = html
+if(history) history.innerHTML = html || '<tr><td colspan="4">Belum ada transaksi.</td></tr>'
 }
 
 function save(){
 localStorage.setItem("dataPS",JSON.stringify(dataPS))
 localStorage.setItem("trans",JSON.stringify(transaksi))
 localStorage.setItem("pend",pendapatan)
+localStorage.setItem("pengeluaran",JSON.stringify(pengeluaran))
 }
 
 function tick(){
@@ -1098,610 +1739,7 @@ setupInstallPrompt()
 recalcRunningTimers(true)
 setInterval(tick,1000)
 render()
-</script>
-
-</body>
-</html>
-padding:15px;
-border-radius:10px;
-min-width:150px;
-}
-
-.container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:15px;
-padding:15px;
-}
-
-.pscard{
-padding:15px;
-border-radius:12px;
-transition:background 0.4s ease;
-}
-
-@keyframes fadeIn{
-
-from{
-opacity:0;
-transform:translateY(15px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-.pscard{
-transition:background 0.5s ease, transform 0.2s;
-}
-
-.pscard:hover{
-
-transform:scale(1.02);
-
-}
-
-button{
-border:none;
-padding:6px 10px;
-border-radius:6px;
-cursor:pointer;
-transition:all 0.15s ease;
-}
-
-button:hover{
-transform:scale(1.05);
-}
-
-button:active{
-transform:scale(0.92);
-}
-
-.timerWarning{
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-
-0%{opacity:1}
-50%{opacity:0.4}
-100%{opacity:1}
-
-}
-
-@keyframes blink{
-
-0%{opacity:1}
-50%{opacity:0.4}
-100%{opacity:1}
-
-}
-
-.kosong{background:#16a34a}
-.main{background:#2563eb}
-.hampir{background:#f59e0b}
-.habis{background:#dc2626}
-
-.timer{
-font-size:28px;
-margin:10px 0;
-}
-
-button{
-border:none;
-padding:6px 10px;
-border-radius:6px;
-cursor:pointer;
-}
-
-.start{background:#22c55e}
-.pause{background:#f59e0b}
-.reset{background:#ef4444}
-.bayar{background:#3b82f6}
-
-.menuGrid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:6px;
-margin-top:10px;
-}
-
-.snackBtn{
-background:#334155;
-padding:6px;
-border-radius:6px;
-display:flex;
-flex-direction:column;
-align-items:center;
-font-size:12px;
-transition:0.2s;
-}
-
-.snackBtn:hover{
-background:#475569;
-transform:scale(1.05);
-}
-
-.qtyBox{
-display:flex;
-gap:5px;
-margin-top:4px;
-}
-
-.qtyBox button{
-background:#64748b;
-padding:2px 6px;
-}
-
-.reset{
-background:#ef4444;
-color:white;
-}
-
-.tambah{
-background:#22c55e;
-color:white;
-}
-
-table{
-width:100%;
-margin-top:20px;
-border-collapse:collapse;
-}
-
-td,th{
-padding:8px;
-border-bottom:1px solid #334155;
-text-align:center;
-}
-
-</style>
-</head>
-
-<body>
-
-<header>BILLING RENTAL MANTUL PLAYSTATION</header>
-
-<div class="dashboard">
-
-<div class="card">
-Total Pendapatan
-<h2 id="totalPend">0</h2>
-<button onclick="resetPendapatan()">Reset Pendapatan</button>
-</div>
-
-</div>
-
-<div class="container" id="psContainer"></div>
-
-<div style="padding:15px">
-
-<h3>Riwayat Transaksi</h3>
-<button onclick="hapusRiwayat()">Hapus Riwayat</button>
-
-<table>
-<thead>
-<tr>
-<th>Tanggal</th>
-<th>PS</th>
-<th>Nama</th>
-<th>Total</th>
-</tr>
-</thead>
-
-<tbody id="history"></tbody>
-
-</table>
-
-</div>
-
-<audio id="alarm10">
-<source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg">
-</audio>
-
-<audio id="alarm0">
-<source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg">
-</audio>
-
-<script>
-
-const psList=[
-{nama:"PS1",tipe:"PS3"},
-{nama:"PS2",tipe:"PS3"},
-{nama:"PS3",tipe:"PS3"},
-{nama:"PS4",tipe:"PS4"},
-{nama:"PS5",tipe:"PS4"}
-]
-
-const hargaPS3={1:5000,2:10000,3:13000,5:22000}
-const hargaPS4={1:8000,2:15000,3:22000,5:38000}
-
-let dataPS=JSON.parse(localStorage.getItem("dataPS"))||psList.map(()=>({
-nama:"",
-jam:1,
-detik:0,
-jalan:false,
-snack:{},
-peringatan:false
-}))
-
-let transaksi=JSON.parse(localStorage.getItem("trans"))||[]
-let pendapatan=parseInt(localStorage.getItem("pend"))||0
-
-const menu=[
-{nama:"Pop Mie",harga:7000},
-{nama:"Chuba",harga:1000},
-{nama:"Chitato Lite",harga:2000},
-{nama:"Good Time",harga:2000},
-{nama:"Oreo",harga:2000},
-{nama:"Beng Beng",harga:3000},
-{nama:"Kapal Api",harga:5000},
-{nama:"Good Day",harga:5000},
-{nama:"Tea Jus",harga:3000},
-{nama:"Teh Tarik",harga:7000},
-{nama:"Nutrisari",harga:5000}
-]
-
-function format(w){
-
-let h=Math.floor(w/3600)
-let m=Math.floor((w%3600)/60)
-let s=w%60
-
-return String(h).padStart(2,'0')+":"+
-String(m).padStart(2,'0')+":"+
-String(s).padStart(2,'0')
-
-}
-
-function getStatusClass(p){
-
-if(!p.jalan && p.detik==0)return "kosong"
-if(p.jalan && p.detik>600)return "main"
-if(p.jalan && p.detik<=600 && p.detik>0)return "hampir"
-if(p.detik==0 && !p.jalan)return "habis"
-
-}
-
-function hargaMain(i){
-
-let tipe=psList[i].tipe
-let jam=dataPS[i].jam
-
-if(tipe=="PS3")return hargaPS3[jam]
-else return hargaPS4[jam]
-
-}
-
-function snackTotal(snack){
-
-let total=0
-
-for(let i in snack){
-
-let m=menu[i]
-total+=m.harga*snack[i]
-
-}
-
-return total
-
-}
-
-function tambahSnack(ps,index){
-
-dataPS[ps].snack[index]=(dataPS[ps].snack[index]||0)+1
-
-save()
-render()
-
-}
-
-function kurangSnack(ps,index){
-
-if(dataPS[ps].snack[index]){
-
-dataPS[ps].snack[index]--
-
-if(dataPS[ps].snack[index]<=0)delete dataPS[ps].snack[index]
-
-}
-
-save()
-render()
-
-}
-
-function start(i){
-
-if(dataPS[i].detik==0){
-
-dataPS[i].detik=dataPS[i].jam*3600
-
-}
-
-dataPS[i].jalan=true
-dataPS[i].peringatan=false
-
-save()
-
-}
-
-function pause(i){
-
-dataPS[i].jalan=false
-save()
-
-}
-
-function resetTimer(i){
-
-if(confirm("Reset timer "+psList[i].nama+" ?")){
-
-dataPS[i].detik=0
-dataPS[i].jalan=false
-dataPS[i].peringatan=false
-dataPS[i].snack={}
-
-save()
-render()
-
-}
-
-}
-
-function tambah30(i){
-
-dataPS[i].detik += 1800
-
-save()
-render()
-
-}
-
-function tambah1jam(i){
-
-dataPS[i].detik += 3600
-
-save()
-render()
-
-}
-
-function bayar(i){
-
-let totalMain=hargaMain(i)
-let totalSnack=snackTotal(dataPS[i].snack)
-let total=totalMain+totalSnack
-
-pendapatan+=total
-
-let now=new Date()
-
-transaksi.push({
-tanggal:now.toLocaleString(),
-ps:psList[i].nama,
-nama:dataPS[i].nama,
-total
-})
-
-cetakStruk(i,totalMain,totalSnack,total)
-
-dataPS[i].snack={}
-
-save()
-render()
-
-}
-
-function cetakStruk(i,main,snack,total){
-
-let w=window.open("","","width=300")
-
-w.document.write(`
-<h3>RENTAL MANTUL PS</h3>
-<hr>
-PS : ${psList[i].nama}<br>
-Nama : ${dataPS[i].nama}<br>
-Paket : ${dataPS[i].jam} Jam<br>
-<hr>
-Main : Rp${main}<br>
-Snack : Rp${snack}<br>
-<hr>
-TOTAL : Rp${total}
-`)
-
-w.print()
-
-}
-
-function hapusRiwayat(){
-
-if(confirm("Hapus semua riwayat transaksi?")){
-
-transaksi=[]
-save()
-render()
-
-}
-
-}
-
-function resetPendapatan(){
-
-if(confirm("Reset total pendapatan?")){
-
-pendapatan=0
-save()
-render()
-
-}
-
-}
-
-function render(){
-
-let html=""
-
-psList.forEach((ps,i)=>{
-
-let p=dataPS[i]
-
-let snackHTML=""
-
-menu.forEach((m,index)=>{
-
-let qty=p.snack[index]||0
-
-snackHTML+=`
-
-<div class="snackBtn">
-
-${m.nama}
-Rp${m.harga}
-
-<div class="qtyBox">
-
-<button onclick="kurangSnack(${i},${index})">-</button>
-${qty}
-<button onclick="tambahSnack(${i},${index})">+</button>
-
-</div>
-
-</div>
-
-`
-
-})
-
-let total=hargaMain(i)+snackTotal(p.snack)
-
-html+=`
-
-<div class="pscard ${getStatusClass(p)}">
-
-<h3>${ps.nama} (${ps.tipe})</h3>
-
-<input placeholder="Nama pemain"
-value="${p.nama}"
-oninput="dataPS[${i}].nama=this.value;save()">
-
-<select onchange="dataPS[${i}].jam=this.value;save();">
-
-<option value="1" ${p.jam==1?"selected":""}>1 Jam</option>
-<option value="2" ${p.jam==2?"selected":""}>2 Jam</option>
-<option value="3" ${p.jam==3?"selected":""}>3 Jam</option>
-<option value="5" ${p.jam==5?"selected":""}>5 Jam</option>
-
-</select>
-
-<div class="timer ${p.detik<=600 && p.detik>0 ? 'timerWarning' : ''}">
-${format(p.detik)}
-</div>
-
-<button class="start" onclick="start(${i})">Start</button>
-<button class="pause" onclick="pause(${i})">Pause</button>
-
-<button onclick="tambah30(${i})">+30m</button>
-<button onclick="tambah1jam(${i})">+1h</button>
-
-<button class="reset" onclick="resetTimer(${i})">Reset</button>
-
-<div class="menuGrid">
-
-${snackHTML}
-
-</div>
-
-<h4>Total : ${total}</h4>
-
-<button class="bayar" onclick="bayar(${i})">Bayar</button>
-
-</div>
-
-`
-
-})
-
-document.getElementById("psContainer").innerHTML=html
-
-renderHistory()
-
-document.getElementById("totalPend").innerText=pendapatan
-
-}
-
-function renderHistory(){
-
-let html=""
-
-transaksi.forEach(t=>{
-
-html+=`
-<tr>
-<td>${t.tanggal}</td>
-<td>${t.ps}</td>
-<td>${t.nama}</td>
-<td>${t.total}</td>
-</tr>
-`
-
-})
-
-document.getElementById("history").innerHTML=html
-
-}
-
-function save(){
-
-localStorage.setItem("dataPS",JSON.stringify(dataPS))
-localStorage.setItem("trans",JSON.stringify(transaksi))
-localStorage.setItem("pend",pendapatan)
-
-}
-
-setInterval(()=>{
-
-dataPS.forEach((p,i)=>{
-
-if(p.jalan){
-
-p.detik--
-
-if(p.detik<=600 && !p.peringatan && p.detik>0){
-
-document.getElementById("alarm10").play()
-p.peringatan=true
-
-}
-
-if(p.detik<=0){
-
-p.detik=0
-p.jalan=false
-document.getElementById("alarm0").play()
-
-}
-
-let timer=document.getElementById("timer"+i)
-
-if(timer){
-timer.innerText=format(p.detik)
-}
-
-}
-
-})
-
-save()
-
-},1000)
-
-render()
-
+showSection('home')
 </script>
 
 </body>
