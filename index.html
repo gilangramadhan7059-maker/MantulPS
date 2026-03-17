@@ -868,13 +868,14 @@ justify-content:flex-start;
       <div class="tableWrap">
         <table>
           <thead>
-            <tr>
-              <th>Tanggal</th>
-              <th>PS</th>
-              <th>Nama</th>
-              <th>Total</th>
-            </tr>
-          </thead>
+  <tr>
+    <th>Tanggal</th>
+    <th>PS</th>
+    <th>Nama</th>
+    <th>Total</th>
+    <th>Aksi</th>
+  </tr>
+</thead>
           <tbody id="history"></tbody>
         </table>
       </div>
@@ -1025,7 +1026,7 @@ const psList=[
 {nama:"PS5",tipe:"PS4"}
 ]
 
-const hargaPS3={1:5000,2:10000,3:13000,5:22000}
+const hargaPS3={1:5000,2:10000,3:13000,4:18000,5:22000}
 const hargaPS4={1:8000,2:15000,3:22000,5:38000}
 
 function createDefaultPS(ps){
@@ -1060,6 +1061,7 @@ const menu=[
 {nama:"Beng Beng",harga:3000,kategori:"Snack"},
 {nama:"Kapal Api",harga:5000,kategori:"Minuman"},
 {nama:"Good Day",harga:5000,kategori:"Minuman"},
+{nama:"Kopi Liong",harga:5000,kategori:"Minuman"},
 {nama:"Tea Jus",harga:3000,kategori:"Minuman"},
 {nama:"Teh Tarik",harga:7000,kategori:"Minuman"},
 {nama:"Nutrisari",harga:5000,kategori:"Minuman"}
@@ -1325,6 +1327,19 @@ if(confirm("Hapus semua riwayat transaksi?")){
 transaksi=[]
 save()
 render()
+}
+}
+
+function hapusTransaksi(index){
+if(confirm("Hapus transaksi ini?")){
+  const trx = transaksi[index]
+  if(trx){
+    pendapatan -= Number(trx.total || 0)
+    if(pendapatan < 0) pendapatan = 0
+  }
+  transaksi.splice(index,1)
+  save()
+  render()
 }
 }
 
@@ -1648,6 +1663,7 @@ html += `
 <option value="1" ${Number(p.jam)==1?"selected":""}>1 Jam</option>
 <option value="2" ${Number(p.jam)==2?"selected":""}>2 Jam</option>
 <option value="3" ${Number(p.jam)==3?"selected":""}>3 Jam</option>
+<option value="4" ${Number(p.jam)==4?"selected":""}>4 Jam</option>
 <option value="5" ${Number(p.jam)==5?"selected":""}>5 Jam</option>
 </select>
 
@@ -1705,17 +1721,18 @@ renderRekap()
 
 function renderHistory(){
 let html=""
-transaksi.forEach(t=>{
+transaksi.forEach((t,index)=>{
 html += `
 <tr>
 <td>${t.tanggal}</td>
 <td>${t.ps}</td>
-<td>${t.nama}</td>
+<td>${t.nama || "-"}</td>
 <td>Rp ${rupiah(t.total)}</td>
+<td><button class="reset" onclick="hapusTransaksi(${index})">Hapus</button></td>
 </tr>`
 })
 let history=document.getElementById("history")
-if(history) history.innerHTML = html || '<tr><td colspan="4">Belum ada transaksi.</td></tr>'
+if(history) history.innerHTML = html || '<tr><td colspan="5">Belum ada transaksi.</td></tr>'
 }
 
 function save(){
